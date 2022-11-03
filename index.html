@@ -6,13 +6,40 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
+
+<!--loading screen -->
 <div class="spinner-border" role="status">
     <span class="visually-hidden">Loading...</span>
 </div>
+
+
+<!--movie form-->
+<form>
+    <div class="mb-3">
+        <label for="movieTitle" class="form-label">Movie Title</label>
+        <input type="text" class="form-control" id="movieTitle" aria-describedby="emailHelp">
+        <div  class="form-text">We won't judge.</div>
+    </div>
+    <div class="mb-3">
+        <label for="movieRating" class="form-label">Movie Rating</label>
+        <input type="text" class="form-control" id="movieRating" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<!--movie render-->
 <div id="loading"></div>
+
+
+
+
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
             crossOrigin="anonymous">
 </script>
@@ -27,16 +54,43 @@
             console.log(data);
             let newHtml = "";
             for (let i = 0; i < data.length; i++) {
-                newHtml += `<div class="container"></div>
-                                <h4>Titile: ${data[i].title}</h4>
-                                <p>rating: ${data[i].rating}</p>
-                                <p>id: ${data[i].id}</p>`
+                newHtml += `<div class="container">
+                                <h4>Title: ${data[i].title}</h4>
+                                <p>Rating: ${data[i].rating}</p>
+                                <p>ID: ${data[i].id}</p>
+                            </div>`
             }
             $('#loading').html(newHtml);
         })
-
-
         .catch((error) => console.log(error))
+
+
+    const addMovie = {title: 'Avatar', body: '1'};
+    const url = 'https://wiry-cookie-buttercup.glitch.me/movies/posts'
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(addMovie),
+    };
+    fetch(url, options)
+        .then(/* post was created successfully */)
+        .catch(/* handle errors */);
+
+
+    // const blogPost = {title: 'Ajax Requests', body: 'Are a fun way to use JS!'};
+    // const url = 'https://wiry-cookie-buttercup.glitch.me/movies/posts'
+    // const options = {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(blogPost),
+    // };
+    // fetch(url, options)
+    //     .then(/* post was created successfully */)
+    //     .catch(/* handle errors */);
 
 
 

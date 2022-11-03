@@ -64,33 +64,29 @@
         })
         .catch((error) => console.log(error))
 
-
-    const addMovie = {title: 'Avatar', body: '1'};
-    const url = 'https://wiry-cookie-buttercup.glitch.me/movies/posts'
+    function addMovies() {
+        const blogPost = {title: 'Avatar', rating: 'Are a fun way to use JS!'};
+    const url = 'https://wiry-cookie-buttercup.glitch.me/movies';
     const options = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(addMovie),
+        body: JSON.stringify(blogPost),
     };
     fetch(url, options)
         .then(/* post was created successfully */)
         .catch(/* handle errors */);
+    }
 
+    fetch('https://wiry-cookie-buttercup.glitch.me/movies/4', {
+        method: 'DELETE'
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+        })
 
-    // const blogPost = {title: 'Ajax Requests', body: 'Are a fun way to use JS!'};
-    // const url = 'https://wiry-cookie-buttercup.glitch.me/movies/posts'
-    // const options = {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(blogPost),
-    // };
-    // fetch(url, options)
-    //     .then(/* post was created successfully */)
-    //     .catch(/* handle errors */);
 
 
 

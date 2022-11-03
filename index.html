@@ -3,8 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Movies</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
+<div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div id="loading"></div>
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+            crossOrigin="anonymous">
+</script>
+<script>
+    const wait = ms => new Promise(resolve => setTimeout(resolve,ms));
+    wait(2000).then(() => {
+        $('.spinner-border').hide();
+    })
+    fetch('https://wiry-cookie-buttercup.glitch.me/movies')
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            let newHtml = "";
+            for (let i = 0; i < data.length; i++) {
+                newHtml += `<div class="container"></div>
+                                <h4>Titile: ${data[i].title}</h4>
+                                <p>rating: ${data[i].rating}</p>
+                                <p>id: ${data[i].id}</p>`
+            }
+            $('#loading').html(newHtml);
+        })
 
+
+        .catch((error) => console.log(error))
+
+
+
+
+
+</script>
 </body>
 </html>

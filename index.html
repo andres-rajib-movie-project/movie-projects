@@ -8,6 +8,20 @@
         *{
             padding: 0;
             margin: 0;
+
+        }
+        body{
+            background-color: #12232E;
+        }
+        header{
+            background-color: #007CC7;
+        }
+        h1{
+            text-align: center;
+            color: #EEFBFB;
+        }
+        #submit{
+           background-color: #4DA8DA;
         }
         h4{
             margin: 10px;
@@ -19,60 +33,52 @@
         .card{
             margin: 20px;
         }
+        .btn-sm{
+        background-color: #7b7b7b;
+        }
+        .btn-sm:hover{
+            background-color: #B73225;
+        }
+        #banner {
+            width:auto;
+            height:100px;
+
+
+        }
     </style>
 </head>
 <body>
-
-<!--loading screen -->
-<!--<div class="spinner-border" role="status">-->
-<!--    <span class="visually-hidden">Loading...</span>-->
-<!--</div>-->
+<header>
+    <h1>It's Movie Time!</h1>
+</header>
 
 
 <!--movie form-->
 <div class="container">
     <form>
         <div class="mb-3">
-            <label for="movieTitle" class="form-label">Movie Title</label>
+            <label for="movieTitle" style="color: #EEFBFB" class="form-label">Movie Title</label>
             <input type="text" class="form-control" id="movieTitle" aria-describedby="emailHelp">
             <div  class="form-text">We won't judge.</div>
         </div>
         <div class="mb-3">
-            <label for="movieRating" class="form-label">Movie Rating</label>
+            <label for="movieRating" style="color: #EEFBFB" class="form-label">Movie Rating</label>
             <input type="text" class="form-control" id="movieRating" aria-describedby="emailHelp">
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div>
-        <button type="button" class="btn btn-primary" id="btn">Submit</button>
+        <button type="button" class="btn btn-primary" id="submit">Submit</button>
     </form>
 </div>
 
 <!--movie render-->
 <div class="container" >
-<!--    <div class="spinner-border" style="display: flex; justify-content: center; align-items: center" role="status">-->
-<!--        <span class="visually-hidden">Loading...</span>-->
-<!--    </div>-->
     <div class="row" id="loading">
-<!--        <div class="spinner-border" style="display: flex; justify-content: center; align-items: center" role="status">-->
-<!--            <span class="visually-hidden">Loading...</span>-->
-<!--            <img src="" alt="">-->
-            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="images/pexels-lisett-kruusimäe-11474968.jpg" class="d-block w-100" alt="...">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+        <div class="spinner-border" style="display: flex; justify-content: center; align-items: center" role="status">
+            <span class="visually-hidden">Loading...</span>
+            <img src="" alt="">
         </div>
     </div>
 </div>
@@ -138,7 +144,7 @@
                                         <h4>Title: ${(data[i].title).toUpperCase()}</h4>
                                         <p>Rating: ${data[i].rating}</p>
                                         <p>ID: ${data[i].id}</p>
-                                        <button type="button" class="btn btn-danger btn-sm" id="${data[i].id}">Delete</button>
+                                        <button type="button" class="btn  btn-sm" id="${data[i].id}">Delete</button>
                                     </div>
                                 </div>`
                 }
@@ -180,7 +186,7 @@
                                                 <h4>Title: ${(data[i].title).toUpperCase()}</h4>
                                                 <p>Rating: ${data[i].rating}</p>
                                                 <p>ID: ${data[i].id}</p>
-                                                <button type="button" class="btn btn-danger btn-sm" id="${data[i].id}">Delete</button>
+                                                <button type="button" class="btn  btn-sm" id="${data[i].id}">Delete</button>
                                             </div>
                                         </div>`
                         }
@@ -217,7 +223,7 @@
                                                     <h4>Title: ${(data[i].title).toUpperCase()}</h4>
                                                     <p>Rating: ${data[i].rating}</p>
                                                     <p>ID: ${data[i].id}</p>
-                                                    <button type="button" class="btn btn-danger btn-sm" id="${data[i].id}">Delete</button>
+                                                    <button type="button" class="btn  btn-sm" id="${data[i].id}">Delete</button>
                                                 </div>
                                             </div>`
                             }

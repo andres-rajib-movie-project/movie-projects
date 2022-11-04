@@ -4,36 +4,62 @@
     <meta charset="UTF-8">
     <title>Movies</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        h4{
+            margin: 10px;
+            font-weight: bold;
+        }
+        p{
+            margin: 10px;
+        }
+        .card{
+            margin: 20px;
+        }
+    </style>
 </head>
 <body>
 
 <!--loading screen -->
-<div class="spinner-border" role="status">
-    <span class="visually-hidden">Loading...</span>
-</div>
+<!--<div class="spinner-border" role="status">-->
+<!--    <span class="visually-hidden">Loading...</span>-->
+<!--</div>-->
 
 
 <!--movie form-->
-<form>
-    <div class="mb-3">
-        <label for="movieTitle" class="form-label">Movie Title</label>
-        <input type="text" class="form-control" id="movieTitle" aria-describedby="emailHelp">
-        <div  class="form-text">We won't judge.</div>
-    </div>
-    <div class="mb-3">
-        <label for="movieRating" class="form-label">Movie Rating</label>
-        <input type="text" class="form-control" id="movieRating" aria-describedby="emailHelp">
-    </div>
-    <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="button" class="btn btn-primary" id="btn">Submit</button>
-</form>
-
+<div class="container">
+    <form>
+        <div class="mb-3">
+            <label for="movieTitle" class="form-label">Movie Title</label>
+            <input type="text" class="form-control" id="movieTitle" aria-describedby="emailHelp">
+            <div  class="form-text">We won't judge.</div>
+        </div>
+        <div class="mb-3">
+            <label for="movieRating" class="form-label">Movie Rating</label>
+            <input type="text" class="form-control" id="movieRating" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="button" class="btn btn-primary" id="btn">Submit</button>
+    </form>
+</div>
 
 <!--movie render-->
-<div id="loading"></div>
+<div class="container" >
+<!--    <div class="spinner-border" style="display: flex; justify-content: center; align-items: center" role="status">-->
+<!--        <span class="visually-hidden">Loading...</span>-->
+<!--    </div>-->
+    <div class="row" id="loading">
+        <div class="spinner-border" style="display: flex; justify-content: center; align-items: center" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</div>
 
 
 
@@ -44,6 +70,35 @@
             crossOrigin="anonymous">
 </script>
 <script>
+    // On page load:
+    //
+    //     Display a "loading..." message✅
+    // Make an AJAX request to get a listing of all the movies ✅
+    // When the initial AJAX request comes back, remove the "loading" message and replace it with HTML generated from the json response your code receives ✅
+
+
+
+    // Allow users to add new movies
+    //
+    // Create a form for adding a new movie that has fields for the movie's title and rating✅
+    // When the form is submitted, the page should not reload / refresh, instead, your javascript should make a POST request to /movies with the information the user put into the form✅
+
+
+    // Allow users to edit existing movies
+    //
+    // Give users the option to edit an existing movie
+    // A form should be pre-populated with the selected movie's details
+    // Like creating a movie, this should not involve any page reloads, instead your javascript code should make an ajax request when the form is submitted.
+
+
+    // Delete movies
+    //
+    // Each movie should have a "delete" button✅
+    // When this button is clicked, your javascript should send a DELETE request✅
+
+
+
+
 
 <!--this adds spinner-->
     const wait = ms => new Promise(resolve => setTimeout(resolve,ms));
@@ -51,56 +106,37 @@
         $('.spinner-border').hide();
     })
 
-    //
+
+
+
+//this prints movies on to html🟢🟢🟢🟢🟢
     wait(2100).then(() => {
-        //this prints movies on to html
         fetch('https://wiry-cookie-buttercup.glitch.me/movies')
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
                 let newHtml = "";
                 for (let i = 0; i < data.length; i++) {
-                    newHtml += `<div class="container">
-                                    <h4>Title: ${(data[i].title).toUpperCase()}</h4>
-                                    <p>Rating: ${data[i].rating}</p>
-                                    <p>ID: ${data[i].id}</p>
-                                    <button type="button" class="btn btn-danger btn-sm" id="${data[i].id}">Delete</button>
+                    newHtml += `<div class="col-4">
+                                    <div class="card">
+                                        <h4>Title: ${(data[i].title).toUpperCase()}</h4>
+                                        <p>Rating: ${data[i].rating}</p>
+                                        <p>ID: ${data[i].id}</p>
+                                        <button type="button" class="btn btn-danger btn-sm" id="${data[i].id}">Delete</button>
+                                    </div>
                                 </div>`
                 }
                 $('#loading').html(newHtml);
-                $('.btn-sm').on('click', function (e) {
-                    e.preventDefault();
-                    $(this).parent().remove();
-                    fetch(`https://wiry-cookie-buttercup.glitch.me/movies`, {
-                        method: 'DELETE'
 
-                    })
-                        .then((response) => response.json())
-                        .then((data) => {console.log(data);
-                            wait(1000).then(() => {
-                                fetch('https://wiry-cookie-buttercup.glitch.me/movies')
-                                    .then((response) => response.json())
-                                    .then((data) => {
-                                        console.log(data);
-                                        let newHtml = "";
-                                        for (let i = 0; i < data.length; i++) {
-                                            newHtml += `<div class="container">
-                                            <h4>Title: ${(data[i].title).toUpperCase()}</h4>
-                                            <p>Rating: ${data[i].rating}</p>
-                                            <p>ID: ${data[i].id}</p>
-                                            <button type="button" class="btn btn-danger btn-sm" id="${data[i].id}">Delete</button>
-                                        </div>`
-                                        }
-                                        $('#loading').html(newHtml);
-                                    })
-                            })
-                        })
-                })
+
             })
             .catch((error) => console.log(error))
 
 
-        //this allows user to input movies
+
+
+
+        //this allows user to input movies🟢🟢🟢🟢🟢
         $('#btn').click(function (e) {
             e.preventDefault();
             const blogPost = {title: ($('#movieTitle').val()).toUpperCase(), rating: $('#movieRating').val()};
@@ -123,44 +159,56 @@
                         console.log(data);
                         let newHtml = "";
                         for (let i = 0; i < data.length; i++) {
-                            newHtml += `<div class="container">
-                                            <h4>Title: ${(data[i].title).toUpperCase()}</h4>
-                                            <p>Rating: ${data[i].rating}</p>
-                                            <p>ID: ${data[i].id}</p>
-                                            <button type="button" class="btn btn-danger btn-sm" id="${data[i].id}">Delete</button>
+                            newHtml += `<div class="col-4">
+                                            <div class="card">
+                                                <h4>Title: ${(data[i].title).toUpperCase()}</h4>
+                                                <p>Rating: ${data[i].rating}</p>
+                                                <p>ID: ${data[i].id}</p>
+                                                <button type="button" class="btn btn-danger btn-sm" id="${data[i].id}">Delete</button>
+                                            </div>
                                         </div>`
                         }
                         $('#loading').html(newHtml);
-                        $('.btn-sm').on('click', function (e) {
-                            e.preventDefault();
-                            $(this).parent().remove();
-                            fetch(`https://wiry-cookie-buttercup.glitch.me/movies`, {
-                                method: 'DELETE'
-                            })
-                                .then((response) => response.json())
-                                .then((data) => {console.log(data);
-                                    wait(1000).then(() => {
-                                        fetch('https://wiry-cookie-buttercup.glitch.me/movies')
-                                            .then((response) => response.json())
-                                            .then((data) => {
-                                                console.log(data);
-                                                let newHtml = "";
-                                                for (let i = 0; i < data.length; i++) {
-                                                    newHtml += `<div class="container">
+
+                    })
+            })
+        })
+    })
+
+
+
+
+    //this deletes movies❌❌❌❌❌
+    $(document).on('click', "button.btn-sm", function (e) {
+        e.preventDefault();
+        let movieId = $(this).attr("id");
+        console.log(movieId)
+        fetch(`https://wiry-cookie-buttercup.glitch.me/movies/${movieId}`, {
+            method: 'DELETE'
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                wait(1000).then(() => {
+                    fetch(`https://wiry-cookie-buttercup.glitch.me/movies`)
+                        .then((response) => response.json())
+                        .then((data) => {
+                            console.log(data);
+                            let newHtml = "";
+                            for (let i = 0; i < data.length; i++) {
+                                newHtml += `<div class="col-4">
+                                                <div class="card">
                                                     <h4>Title: ${(data[i].title).toUpperCase()}</h4>
                                                     <p>Rating: ${data[i].rating}</p>
                                                     <p>ID: ${data[i].id}</p>
                                                     <button type="button" class="btn btn-danger btn-sm" id="${data[i].id}">Delete</button>
-                                                </div>`
-                                                }
-                                                $('#loading').html(newHtml);
-                                            })
-                                    })
-                            })
+                                                </div>
+                                            </div>`
+                            }
+                            $('#loading').html(newHtml);
                         })
-                    })
+                })
             })
-        })
     })
 </script>
 </body>

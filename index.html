@@ -29,7 +29,6 @@
         <label class="form-check-label" for="exampleCheck1">Check me out</label>
     </div>
     <button type="button" class="btn btn-primary" id="btn">Submit</button>
-
 </form>
 
 
@@ -48,26 +47,55 @@
 
 <!--this adds spinner-->
     const wait = ms => new Promise(resolve => setTimeout(resolve,ms));
-    wait(3000).then(() => {
+    wait(2000).then(() => {
         $('.spinner-border').hide();
     })
 
-
-    wait(3100).then(() => {
+    //
+    wait(2100).then(() => {
         //this prints movies on to html
         fetch('https://wiry-cookie-buttercup.glitch.me/movies')
             .then((response) => response.json())
-            .then((data) => {console.log(data);
+            .then((data) => {
+                console.log(data);
                 let newHtml = "";
                 for (let i = 0; i < data.length; i++) {
                     newHtml += `<div class="container">
                                     <h4>Title: ${(data[i].title).toUpperCase()}</h4>
                                     <p>Rating: ${data[i].rating}</p>
                                     <p>ID: ${data[i].id}</p>
-                                    <button type="button" class="btn btn-primary" id="btn1">Delete</button>
+                                    <button type="button" class="btn btn-danger btn-sm" id="${data[i].id}">Delete</button>
                                 </div>`
                 }
                 $('#loading').html(newHtml);
+                $('.btn-sm').on('click', function (e) {
+                    e.preventDefault();
+                    $(this).parent().remove();
+                    fetch(`https://wiry-cookie-buttercup.glitch.me/movies`, {
+                        method: 'DELETE'
+
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {console.log(data);
+                            wait(1000).then(() => {
+                                fetch('https://wiry-cookie-buttercup.glitch.me/movies')
+                                    .then((response) => response.json())
+                                    .then((data) => {
+                                        console.log(data);
+                                        let newHtml = "";
+                                        for (let i = 0; i < data.length; i++) {
+                                            newHtml += `<div class="container">
+                                            <h4>Title: ${(data[i].title).toUpperCase()}</h4>
+                                            <p>Rating: ${data[i].rating}</p>
+                                            <p>ID: ${data[i].id}</p>
+                                            <button type="button" class="btn btn-danger btn-sm" id="${data[i].id}">Delete</button>
+                                        </div>`
+                                        }
+                                        $('#loading').html(newHtml);
+                                    })
+                            })
+                        })
+                })
             })
             .catch((error) => console.log(error))
 
@@ -99,38 +127,41 @@
                                             <h4>Title: ${(data[i].title).toUpperCase()}</h4>
                                             <p>Rating: ${data[i].rating}</p>
                                             <p>ID: ${data[i].id}</p>
+                                            <button type="button" class="btn btn-danger btn-sm" id="${data[i].id}">Delete</button>
                                         </div>`
                         }
                         $('#loading').html(newHtml);
+                        $('.btn-sm').on('click', function (e) {
+                            e.preventDefault();
+                            $(this).parent().remove();
+                            fetch(`https://wiry-cookie-buttercup.glitch.me/movies`, {
+                                method: 'DELETE'
+                            })
+                                .then((response) => response.json())
+                                .then((data) => {console.log(data);
+                                    wait(1000).then(() => {
+                                        fetch('https://wiry-cookie-buttercup.glitch.me/movies')
+                                            .then((response) => response.json())
+                                            .then((data) => {
+                                                console.log(data);
+                                                let newHtml = "";
+                                                for (let i = 0; i < data.length; i++) {
+                                                    newHtml += `<div class="container">
+                                                    <h4>Title: ${(data[i].title).toUpperCase()}</h4>
+                                                    <p>Rating: ${data[i].rating}</p>
+                                                    <p>ID: ${data[i].id}</p>
+                                                    <button type="button" class="btn btn-danger btn-sm" id="${data[i].id}">Delete</button>
+                                                </div>`
+                                                }
+                                                $('#loading').html(newHtml);
+                                            })
+                                    })
+                            })
+                        })
                     })
             })
         })
     })
-
-
-
-
-
-
-
-    //this deletes movies
-    $('#btn1').click(function (e) {
-        e.preventDefault();
-        fetch('https://wiry-cookie-buttercup.glitch.me/movies/6', {
-            method: 'DELETE'
-        })
-            .then((response) => response.json())
-            .then((data) => {console.log(data);
-
-
-
-            })
-    })
-
-
-
-
-
 </script>
 </body>
 </html>

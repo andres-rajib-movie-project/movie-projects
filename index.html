@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Movies</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="css/index.css">
     <style>
         *{
             padding: 0;
@@ -14,14 +15,131 @@
             background-color: #12232E;
         }
         header{
-            background-color: #007CC7;
+            background-color: black;
+            display: flex;
+            justify-content: center;
         }
-        h1{
+        #logo{
+            width: 300px;
+            padding: 20px;
+        }
+        .center{
+            background-color: black;
+            display: flex;
             text-align: center;
-            color: #EEFBFB;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .ring{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            animation: ring 2s linear infinite;
+        }
+        @keyframes ring {
+            0%{
+               transform: rotate(0deg);
+                box-shadow: 1px 5px 2px #e65c00;
+            }
+            50%{
+                transform: rotate(180deg);
+                box-shadow: 1px 5px 2px #18b201;
+            }
+            100%{
+                transform: rotate(360deg);
+                box-shadow: 1px 5px 2px #0456c8;
+            }
+
+        }
+        .ring:before{
+            position: absolute;
+            content: '';
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 3);
+        }
+        span{
+            color: #737373;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 200px;
+            animation: text 3s ease-in-out infinite;
+        }
+        @keyframes text {
+            0%{
+                color: black;
+            }
+
+        }
+        /*#form-content{*/
+        /*    display: flex;*/
+        /*    justify-content: center;*/
+        /*}*/
+        #montage{
+            max-height: 100%;
+            max-width: 100%;
+        }
+        form{
+            width: 400px;
         }
         #submit{
-           background-color: #4DA8DA;
+            background-color: #4DA8DA;
+        }
+        .container{
+            margin-top: 100px;
+        }
+        .row{
+            margin-top: 20px;
+        }
+        .card{
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: 400px 210px ;
+            grid-template-areas: "image" "text";
+            background: #1d1d1d;
+            font-family: "Roboto Light" ;
+            border-radius: 18px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+            text-align: justify;
+            color: #EEFBFB;
+            transition: 0.5ms;
+            cursor: pointer;
+            margin: 50px 15px;
+
+        }
+        /*.rgb::after{*/
+        /*    content: '';*/
+        /*    background: linear-gradient(45deg, #ff0000 0%, #ff9a00 10%, #d0d321 20%, #4fdc4a 30%, #3fdad8 40%, #2fc9e2 50%, #1c7fee 60%, #5f15f2 70%, #ba0cf8 80%, #fb07d9 90%, #ff0000 100%);*/
+        /*    inset: -3px;*/
+        /*    border-radius: 16px;*/
+        /*    filter: blur(8px);*/
+        /*    animation: rgb 6s linear infinite;*/
+        /*}*/
+        /*@keyframes rgb {*/
+        /*    0% {background-position: 0 50%;}*/
+        /*    50% {background-position: 100% 50%;}*/
+        /*    100% {background-position: 0 50%;}*/
+        /*}*/
+        .card:hover{
+            transform: scale(1.2);
+        }
+        .card-image{
+            grid-area: image;
+            background: linear-gradient(#fff0 0, #fff0 70%, #1d1d1d 100%), url("./images/avatar.jpeg");
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            background-size: cover;
+        }
+        .card-text{
+            grid-area: text;
+            margin: 15px;
+
         }
         h4{
             margin: 10px;
@@ -30,11 +148,10 @@
         p{
             margin: 10px;
         }
-        .card{
-            margin: 20px;
-        }
+
         .btn-sm{
-        background-color: #7b7b7b;
+            background-color: #7b7b7b;
+            margin: 30px 0 0 10px;
         }
         .btn-sm:hover{
             background-color: #B73225;
@@ -46,188 +163,67 @@
 
         }
     </style>
+
 </head>
 <body>
 <header>
-    <h1>It's Movie Time!</h1>
+    <img src="images/logo.png" id="logo">
 </header>
 
 
-<!--movie form-->
-<div class="container">
-    <form>
-        <div class="mb-3">
-            <label for="movieTitle" style="color: #EEFBFB" class="form-label">Movie Title</label>
-            <input type="text" class="form-control" id="movieTitle" aria-describedby="emailHelp">
-            <div  class="form-text">We won't judge.</div>
-        </div>
-        <div class="mb-3">
-            <label for="movieRating" style="color: #EEFBFB" class="form-label">Movie Rating</label>
-            <input type="text" class="form-control" id="movieRating" aria-describedby="emailHelp">
-        </div>
-        <button type="button" class="btn btn-primary" id="submit">Submit</button>
-    </form>
+
+
+<!--loading screen-->
+<div class="center">
+    <div class="ring"></div>
+    <span>loading...</span>
 </div>
+
+
+
+
+<!--movie form-->
+<div class="container" id="form-content">
+    <div class="form-holder">
+        <form>
+            <div class="mb-3">
+                <label for="movieTitle" style="color: #EEFBFB" class="form-label">Movie Title</label>
+                <input type="text" class="form-control" id="movieTitle" aria-describedby="emailHelp">
+                <div  class="form-text">We won't judge.</div>
+            </div>
+            <div class="mb-3">
+                <label for="movieRating" style="color: #EEFBFB" class="form-label">Movie Rating</label>
+                <input type="text" class="form-control" id="movieRating" aria-describedby="emailHelp">
+            </div>
+            <button type="button" class="btn btn-primary" id="submit">Submit</button>
+        </form>
+    </div>
+<!--    <div id="montage-holder">-->
+<!--        <img src="images/montage.jpeg" id="montage">-->
+<!--    </div>-->
+</div>
+
+
+
 
 <!--movie render-->
 <div class="container" >
     <div class="row" id="loading">
-        <div class="spinner-border" style="display: flex; justify-content: center; align-items: center" role="status">
-            <span class="visually-hidden">Loading...</span>
-            <img src="" alt="">
-        </div>
     </div>
 </div>
 
 
 
-
+<!--jquery-->
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+<!--bootstrap-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-            crossOrigin="anonymous">
-</script>
-<script>
-    // On page load:
-    //
-    //     Display a "loading..." message✅
-    // Make an AJAX request to get a listing of all the movies ✅
-    // When the initial AJAX request comes back, remove the "loading" message and replace it with HTML generated from the json response your code receives ✅
+            crossOrigin="anonymous"></script>
 
+<!--js-->
+<script src="js/index.js"></script>
 
-
-    // Allow users to add new movies
-    //
-    // Create a form for adding a new movie that has fields for the movie's title and rating✅
-    // When the form is submitted, the page should not reload / refresh, instead, your javascript should make a POST request to /movies with the information the user put into the form✅
-
-
-    // Allow users to edit existing movies
-    //
-    // Give users the option to edit an existing movie
-    // A form should be pre-populated with the selected movie's details
-    // Like creating a movie, this should not involve any page reloads, instead your javascript code should make an ajax request when the form is submitted.
-
-
-    // Delete movies
-    //
-    // Each movie should have a "delete" button✅
-    // When this button is clicked, your javascript should send a DELETE request✅
-
-
-
-
-
-<!--this adds spinner-->
-    const wait = ms => new Promise(resolve => setTimeout(resolve,ms));
-    wait(2000).then(() => {
-        $('.spinner-border').hide();
-    })
-
-
-
-
-//this prints movies on to html🟢🟢🟢🟢🟢
-    wait(2100).then(() => {
-        fetch('https://wiry-cookie-buttercup.glitch.me/movies')
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                let newHtml = "";
-                for (let i = 0; i < data.length; i++) {
-                    newHtml += `<div class="col-4">
-                                    <div class="card">
-                                        <h4>Title: ${(data[i].title).toUpperCase()}</h4>
-                                        <p>Rating: ${data[i].rating}</p>
-                                        <p>ID: ${data[i].id}</p>
-                                        <button type="button" class="btn  btn-sm" id="${data[i].id}">Delete</button>
-                                    </div>
-                                </div>`
-                }
-                $('#loading').html(newHtml);
-
-
-            })
-            .catch((error) => console.log(error))
-
-
-
-
-
-        //this allows user to input movies🟢🟢🟢🟢🟢
-        $('#btn').click(function (e) {
-            e.preventDefault();
-            const blogPost = {title: ($('#movieTitle').val()).toUpperCase(), rating: $('#movieRating').val()};
-            const url = 'https://wiry-cookie-buttercup.glitch.me/movies';
-            const options = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(blogPost),
-            };
-            fetch(url, options)
-                .then(/* post was created successfully */)
-                .catch(/* handle errors */)
-
-            wait(1000).then(() => {
-                fetch('https://wiry-cookie-buttercup.glitch.me/movies')
-                    .then((response) => response.json())
-                    .then((data) => {
-                        console.log(data);
-                        let newHtml = "";
-                        for (let i = 0; i < data.length; i++) {
-                            newHtml += `<div class="col-4">
-                                            <div class="card">
-                                                <h4>Title: ${(data[i].title).toUpperCase()}</h4>
-                                                <p>Rating: ${data[i].rating}</p>
-                                                <p>ID: ${data[i].id}</p>
-                                                <button type="button" class="btn  btn-sm" id="${data[i].id}">Delete</button>
-                                            </div>
-                                        </div>`
-                        }
-                        $('#loading').html(newHtml);
-
-                    })
-            })
-        })
-    })
-
-
-
-
-    //this deletes movies❌❌❌❌❌
-    $(document).on('click', "button.btn-sm", function (e) {
-        e.preventDefault();
-        let movieId = $(this).attr("id");
-        console.log(movieId)
-        fetch(`https://wiry-cookie-buttercup.glitch.me/movies/${movieId}`, {
-            method: 'DELETE'
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                wait(1000).then(() => {
-                    fetch(`https://wiry-cookie-buttercup.glitch.me/movies`)
-                        .then((response) => response.json())
-                        .then((data) => {
-                            console.log(data);
-                            let newHtml = "";
-                            for (let i = 0; i < data.length; i++) {
-                                newHtml += `<div class="col-4">
-                                                <div class="card">
-                                                    <h4>Title: ${(data[i].title).toUpperCase()}</h4>
-                                                    <p>Rating: ${data[i].rating}</p>
-                                                    <p>ID: ${data[i].id}</p>
-                                                    <button type="button" class="btn  btn-sm" id="${data[i].id}">Delete</button>
-                                                </div>
-                                            </div>`
-                            }
-                            $('#loading').html(newHtml);
-                        })
-                })
-            })
-    })
-</script>
 </body>
 </html>

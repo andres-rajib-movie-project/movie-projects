@@ -3,28 +3,109 @@
     margin: 0;
 
 }
+
 body{
-    background-color: #12232E;
+    background-color: #12151c;
 }
+
 header{
     background-color: black;
+    display: flex;
+    justify-content: center;
 }
+
 #logo{
-    width: 100px;
+    width: 300px;
+    padding: 20px;
 }
-h1{
+
+.center{
+    background-color: black;
+    display: flex;
     text-align: center;
-    color: #b6b620;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
+
+.ring{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    animation: ring 2s linear infinite;
+}
+
+@keyframes ring {
+    0%{
+        transform: rotate(0deg);
+        box-shadow: 1px 5px 2px #e65c00;
+    }
+    50%{
+        transform: rotate(180deg);
+        box-shadow: 1px 5px 2px #18b201;
+    }
+    100%{
+        transform: rotate(360deg);
+        box-shadow: 1px 5px 2px #0456c8;
+    }
+
+}
+
+.ring:before{
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 3);
+}
+
+span{
+    color: #737373;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 200px;
+    animation: text 3s ease-in-out infinite;
+}
+
+@keyframes text {
+    0%{
+        color: black;
+    }
+
+}
+
+#form-content{
+    background-image: url('../images/icegif-938.gif');
+    background-size: cover;
+    height: 40vh;
+    padding:0;
+    margin:0;
+    display: flex;
+    align-items: center;
+
+}
+
+form{
+    width: 400px;
+}
+
 #submit{
     background-color: #4DA8DA;
 }
+
 .container{
     margin-top: 100px;
 }
+
 .row{
     margin-top: 20px;
 }
+
 .card{
     display: grid;
     grid-template-columns: auto;
@@ -36,43 +117,67 @@ h1{
     box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
     text-align: justify;
     color: #EEFBFB;
-    transition: 0.5ms;
+    transition: 0.5s;
     cursor: pointer;
     margin: 50px 15px;
+    /*border: 4px solid transparent;*/
+    /*border-image-source: linear-gradient(45deg, purple, blue, red);*/
+    /*border-image-slice: 1;*/
+
 
 }
-/*.rgb::after{*/
-/*    content: '';*/
-/*    background: linear-gradient(45deg, #ff0000 0%, #ff9a00 10%, #d0d321 20%, #4fdc4a 30%, #3fdad8 40%, #2fc9e2 50%, #1c7fee 60%, #5f15f2 70%, #ba0cf8 80%, #fb07d9 90%, #ff0000 100%);*/
-/*    inset: -3px;*/
-/*    border-radius: 16px;*/
-/*    filter: blur(8px);*/
-/*    animation: rgb 6s linear infinite;*/
-/*}*/
-/*@keyframes rgb {*/
-/*    0% {background-position: 0 50%;}*/
-/*    50% {background-position: 100% 50%;}*/
-/*    100% {background-position: 0 50%;}*/
-/*}*/
+
 .card:hover{
     transform: scale(1.2);
 }
+
 .card-image{
     grid-area: image;
-    background: linear-gradient(#fff0 0, #fff0 70%, #1d1d1d 100%), url("./images/avatar.jpeg");
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     background-size: cover;
 }
+
+#card1{
+    background: linear-gradient(#fff0 0, #fff0 70%, #1d1d1d 100%), url("../images/avatar.jpeg");
+    background-size: cover;
+}
+
+#card2{
+    background: linear-gradient(#fff0 0, #fff0 70%, #1d1d1d 100%), url("../images/alien.jpeg");
+    background-size: cover;
+}
+
+#card3{
+    background: linear-gradient(#fff0 0, #fff0 70%, #1d1d1d 100%), url("../images/episode3.jpeg");
+    background-size: cover;
+}
+
+#card4{
+    background: linear-gradient(#fff0 0, #fff0 70%, #1d1d1d 100%), url("../images/the-martian.jpeg");
+    background-size: cover;
+}
+
+#card5{
+    background: linear-gradient(#fff0 0, #fff0 70%, #1d1d1d 100%), url("../images/toy-story.jpeg");
+    background-size: cover;
+}
+
+#card6{
+    background: linear-gradient(#fff0 0, #fff0 70%, #1d1d1d 100%), url("../images/rush-hour.jpeg");
+    background-size: cover;
+}
+
 .card-text{
     grid-area: text;
     margin: 15px;
-
 }
+
 h4{
     margin: 10px;
     font-weight: bold;
 }
+
 p{
     margin: 10px;
 }
@@ -81,12 +186,7 @@ p{
     background-color: #7b7b7b;
     margin: 30px 0 0 10px;
 }
+
 .btn-sm:hover{
     background-color: #B73225;
-}
-#banner {
-    width:auto;
-    height:100px;
-
-
 }

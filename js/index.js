@@ -1,3 +1,4 @@
+(function () {
 // On page load:
 //
 //     Display a "loading..." message✅
@@ -193,8 +194,12 @@ $(document).on('click', "button.btn-sm", function (e) {
             })
         })
 })
+
+
+//Adds an audio sound on the click of submit button🐰🐰🐰🐰🐰
 $('#submit').on('click', function () {
     var obj = document.createElement('audio');
-    obj.src = 'sounds/godzilla_1954_roar.mp3';
+    obj.src = 'sounds/gojira_roar.mp3';
     obj.play();
 });
+})();

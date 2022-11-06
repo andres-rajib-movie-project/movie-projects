@@ -47,8 +47,8 @@ wait(7100).then(() => {
             let newHtml = "";
             for (let i = 0; i < data.length; i++) {
                 newHtml += `<div class="col-4">
-                                    <div class="card rgb" id="${data[i].id}">
-                                        <div class="card-image"></div>
+                                    <div class="card rgb" >
+                                        <div class="card-image" id="card${data[i].id}"></div>
                                         <div class="card-text">
                                             <h4>Title: ${(data[i].title).toUpperCase()}</h4>
                                             <p>Rating: ${data[i].rating}</p>
@@ -92,8 +92,8 @@ wait(7100).then(() => {
                     let newHtml = "";
                     for (let i = 0; i < data.length; i++) {
                         newHtml += `<div class="col-4">
-                                            <div class="card">
-                                                <div class="card-image rgb"></div>
+                                            <div class="card rgb" >
+                                                <div class="card-image" id="card${data[i].id}"></div>
                                                 <div class="card-text">
                                                     <h4>Title: ${(data[i].title).toUpperCase()}</h4>
                                                     <p>Rating: ${data[i].rating}</p>
@@ -177,8 +177,8 @@ $(document).on('click', "button.btn-sm", function (e) {
                         for (let i = 0; i < data.length; i++) {
 
                             newHtml += `<div class="col-4">
-                                                <div class="card">
-                                                    <div class="card-image rgb"></div>
+                                                <div class="card rgb">
+                                                    <div class="card-image" id="card${data[i].id}"></div>
                                                     <div class="card-text">
                                                         <h4>Title: ${(data[i].title).toUpperCase()}</h4>
                                                         <p>Rating: ${data[i].rating}</p>
@@ -193,7 +193,7 @@ $(document).on('click', "button.btn-sm", function (e) {
             })
         })
 })
-$('.btn')[0].on('click', function () {
+$('.btn').on('click', function () {
     var obj = document.createElement('audio');
     obj.src = 'sounds/godzilla_1954_roar.mp3';
     obj.play();

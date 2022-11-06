@@ -193,7 +193,7 @@ $(document).on('click', "button.btn-sm", function (e) {
             })
         })
 })
-$('.btn').on('click', function () {
+$('#submit').on('click', function () {
     var obj = document.createElement('audio');
     obj.src = 'sounds/godzilla_1954_roar.mp3';
     obj.play();

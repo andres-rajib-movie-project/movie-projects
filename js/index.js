@@ -69,7 +69,7 @@ wait(7100).then(() => {
 
 
     //this allows user to input movies🟢🟢🟢🟢🟢
-    $('.btn').click(function (e) {
+    $('#submit').click(function (e) {
         e.preventDefault();
         const blogPost = {title: ($('#movieTitle').val()).toUpperCase(), rating: $('#movieRating').val()};
         const url = 'https://wiry-cookie-buttercup.glitch.me/movies';
@@ -111,6 +111,48 @@ wait(7100).then(() => {
 })
 
 
+//this allows user to add pre-populated movie
+$('#addition').click(function (e) {
+    e.preventDefault();
+    console.log($('#title1').val());
+    const blogPost = {title: $('#title1').attr("placeholder"), rating: $('#rating1').attr("placeholder")};
+    const url = 'https://wiry-cookie-buttercup.glitch.me/movies';
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(blogPost),
+    };
+    fetch(url, options)
+        .then(/* post was created successfully */)
+        .catch(/* handle errors */)
+
+    wait(1000).then(() => {
+        fetch('https://wiry-cookie-buttercup.glitch.me/movies')
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                let newHtml = "";
+                for (let i = 0; i < data.length; i++) {
+                    newHtml += `<div class="col-4">
+                                            <div class="card">
+                                                <div class="card-image rgb"></div>
+                                                <div class="card-text">
+                                                    <h4>Title: ${(data[i].title).toUpperCase()}</h4>
+                                                    <p>Rating: ${data[i].rating}</p>
+                                                    <p>ID: ${data[i].id}</p>
+                                                    <button type="button" class="btn  btn-sm" id="${data[i].id}">Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>`
+                }
+                $('#loading').html(newHtml);
+
+            })
+    })
+})
+
 
 
 //this deletes movies❌❌❌❌❌
@@ -151,4 +193,8 @@ $(document).on('click', "button.btn-sm", function (e) {
             })
         })
 })
-
+$('.btn')[0].on('click', function () {
+    var obj = document.createElement('audio');
+    obj.src = 'sounds/godzilla_1954_roar.mp3';
+    obj.play();
+});

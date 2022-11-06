@@ -77,14 +77,14 @@
             }
 
         }
-        /*#form-content{*/
-        /*    display: flex;*/
-        /*    justify-content: center;*/
-        /*}*/
-        #montage{
-            max-height: 100%;
-            max-width: 100%;
+        #form-content{
+            background-image: url('images/icegif-938.gif');
+            background-size: cover;
+            height: 40vh;
+            padding:0;
+            margin:0;
         }
+
         form{
             width: 400px;
         }
@@ -183,7 +183,7 @@
 
 
 <!--movie form-->
-<div class="container" id="form-content">
+<div id="form-content">
     <div class="form-holder">
         <form>
             <div class="mb-3">
@@ -202,6 +202,30 @@
 <!--        <img src="images/montage.jpeg" id="montage">-->
 <!--    </div>-->
 </div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    ADD MOVIE !!
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-success">
+            <div>
+                <h1 class="modal-title fs-5" id="title">Movie Title</h1>
+                <input id="title1" type="text" placeholder="BARBARIAN">
+            </div>
+                <h1 class="modal-title fs-5" id="rating">Movie Rating</h1>
+                <input id="rating1" type="number" placeholder="5">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
+                <button type="button" id="addition" class="btn btn-primary ">ADD</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 
@@ -211,7 +235,6 @@
     <div class="row" id="loading">
     </div>
 </div>
-
 
 
 <!--jquery-->

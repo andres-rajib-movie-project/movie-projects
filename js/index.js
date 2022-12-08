@@ -47,11 +47,12 @@ wait(7100).then(() => {
             console.log(data);
             let newHtml = "";
             for (let i = 0; i < data.length; i++) {
+                console.log(data[i].title);
                 newHtml += `<div class="col-4">
                                     <div class="card rgb" >
                                         <div class="card-image" id="card${data[i].id}"></div>
                                         <div class="card-text">
-                                            <h4>Title: ${(data[i].title).toUpperCase()}</h4>
+                                            <h4>Title: ${(data[i].title)}</h4>
                                             <p>Rating: ${data[i].rating}</p>
                                             <p>ID: ${data[i].id}</p>
                                             <button type="button" class="btn  btn-sm" id="${data[i].id}">Delete</button>
